@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
 }
 
 code {
@@ -16,11 +18,33 @@ code {
   width:100%;
 }
 
+*visual{
+  max-height: 100vw;
+}
+
 .tile{
   width:25%;
-  height: 40vh;
+  height: 25vw;
   margin:2%;
   display: inline-block;
-  border: 2px solid grey;
+  border: 2px solid rgba(100,100,100,.9);
   border-radius: 8%;
+  opacity:0.1;
+}
+
+@keyframes example {
+  0%   {  background-color: rgb(25,100,200);
+    box-shadow: 1vw 1vw 1vw tiel;}
+
+  100% {  background-color:rgb(170,100,200);
+    box-shadow: 1vw 1vw 3vw grey;
+  opacity:0.5;}
+}
+
+
+.marker{
+
+  animation-name: example;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
 }

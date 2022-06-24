@@ -1,24 +1,26 @@
 import React , { useState , useEffect } from 'react';
 
 function Metronome() {
-
-  let [ tempo , setTempo ] = useState(70);
-  let elements = document.getElementsByClassName("tile");
-  let [counter , setCounter ] = useState(1);
   let [ delay , setDelay ] = useState();
+  let [ tempo , setTempo ] = useState(53);
+  let elements = document.getElementsByClassName("tile");
 
-  function doit(){
-    setCounter(counter => counter+=1);
-  }
-
-  function start(){
-    setInterval( doit , (60000/tempo) )
-  }
-
+  let [counter , setCounter ] = useState(3);
+  let previos;
   useEffect(() => {
-    elements[counter%3].style.backgroundColor = `rgba(${counter*50%255},${counter*30%119}, ${counter*10%73} , ${Math.min(.5,(counter%15*1/15))}`;
+
+    elements[(counter)%9].classList.toggle("marker");
 
   }, [counter]);
+
+
+  function doit(){
+
+    setInterval( function() {setCounter(cc => cc+=1)} , (60000/tempo))
+
+  }
+
+
 
   return (
     <>
@@ -27,11 +29,17 @@ function Metronome() {
     <form>
       <input type="range" min="10" max="150" value={tempo} onChange={e => setTempo(e.target.value)} className="slider" id="myTempo" />
     </form>
-    <h2 onClick={start}>Start</h2>
+    <h2 onClick={doit}>Start</h2>
     <div id="visual">
-      <div className="tile"></div>
-      <div className="tile"></div>
-      <div className="tile"></div>
+      <div className="tile" ></div>
+      <div className="tile" ></div>
+      <div className="tile" ></div>
+      <div className="tile" ></div>
+      <div className="tile" ></div>
+      <div className="tile" ></div>
+      <div className="tile" ></div>
+      <div className="tile" ></div>
+      <div className="tile" ></div>
     </div>
         {counter}
     </>
